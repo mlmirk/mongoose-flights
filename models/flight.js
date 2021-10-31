@@ -5,7 +5,7 @@ const Schema= mongoose.Schema
 const flightSchema = {
 airline: {
   type: String,
-  enum:['American', 'Southwest,', 'United'],
+  enum:['American', 'Southwest', 'United'],
 
 },
 airport:{
@@ -15,12 +15,19 @@ enum: ['AUS','DFW','DEN','LAX','SAN']
 },
 flightNo:{
 type: Number,
-required: True,
+required: true,
 min:10,
 max:9999
+
 },
-departs:{
-  type: Date
+departs: Date
+
+
 }
 
+const Flight = mongoose.model('Flight', flightSchema)
+
+console.log(flightSchema)
+export{
+  Flight
 }

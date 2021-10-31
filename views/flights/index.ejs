@@ -1,0 +1,43 @@
+<%- include("../partials/html-head") %>
+<%- include("../partials/nav") %>
+<main>
+  <h1><%= title %></h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Airline</th>
+        <th>Departure airport</th>
+        <th>Flight number</th>
+        <th>Date</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.forEach(f => { %>
+        <tr>
+          <td><%= f.airline %></td>
+          <td><%= f.airport %></td>
+          <td><%= f.flightNo %></td>
+          <td><%= f.departs%></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+
+
+<%- include("../partials/footer") %> 

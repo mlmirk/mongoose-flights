@@ -1,0 +1,53 @@
+<%- include("../partials/html-head") %>
+<%- include("../partials/nav") %>
+<main>
+
+
+<h1>Create a new Flight</h1>
+<form action="/flights" method="POST">
+  <label for="Airlines">Choose an airline: 
+    <select name="airline" id="airlines">
+      <option value="American">American Airlines</option>
+      <option value="Southwest">Southwest Airlines</option>
+      <option value="United" selected>United Airlines</option>
+    </select>
+</label>
+
+<br>
+<br>
+
+
+  <label for="Choose an airport">Choose a departure: 
+    <select name="airport" id="airports">
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN" selected>DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select>
+  </label>
+
+  <br>
+  <br>
+
+<label for="choosing a flight Number"> Select a flight Number
+  <input name="flightNo" type="number" value="10" min="10" max="9999" >
+</label>
+
+<br>
+<br>
+<label for="Date selection">Choose a departure date:
+  <input type="datetime-local"
+  name="departs"  min="2021-10-31T00:00" >
+</label>
+<br>
+<br>
+<button type="submit">ADD FLIGHT</button>
+
+
+  </form>
+</main>
+
+
+
+<%- include("../partials/footer") %> 
