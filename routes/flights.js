@@ -7,7 +7,7 @@ router.get('/', flightCtrl.index)
 router.get('/new', flightCtrl.new)
 router.get('/:id', flightCtrl.show)
 
-router.get('/:id/tickets/new', flightCtrl.newTicket)
+//router.get('/:id/tickets/new', flightCtrl.newTicket)
 
 
 router.post('/', flightCtrl.create)

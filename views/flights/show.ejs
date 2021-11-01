@@ -7,7 +7,32 @@
   <h3>Carrier: <%= flight.airline %> </h3>
   <h3>Leaving from: <%= flight.airport %></h3>
   <h3>Date of flight:  <%= flight.departs %></h3>
-<a href="/flights/<%=flight._id%>/tickets/new ">Create Ticket</a>
+<!--<a href="/flights/<%=flight._id%>/tickets/new ">Create Ticket</a>-->
+
+<form action="/flights/<%=flight._id%>/tickets"  method="POST">
+  <label for="Seat selection">Select a seat: [A-F] and [1-99] only
+    <input name="seat" required pattern="[A-F][1-9]\d?">
+  
+  </label>
+  <br>
+  <br>
+  <label for="Choosing a ticket price">Choose a seating class and price 
+    <select name="price" id="price">
+      <option value="100" selected>Economy 100 USD</option>
+      <option value="500">Premium Economy 500 USD</option>
+      <option value="1000" >First Class 1000 USD</option>
+  </select>
+  </label>
+  <br>
+  <br>
+  <button type="submit">Submit ticket</button>
+  
+  
+  </form>
+
+
+
+
 
 <% if(flight.tickets.length) {%> 
   <table>
@@ -23,13 +48,13 @@
 
           <td><%= t.seat %></td>
           <td><%= t.price %></td>
-          <td><a href="">Delete ticket</a></td>
+          <!--<td><a href="">Delete ticket</a></td>-->
         </tr>
       <% }) %>
     </tbody>
   </table>
 <% } else { %>
-  <h3>Nop tickets creatd for this flight</h3>
+  <h3>No tickets creatd for this flight</h3>
 
 
 

@@ -16,8 +16,8 @@ price:{
 
 }
 
-
-
+const datePlus1 = new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+//console.log(datePlus1);
 
 
 
@@ -41,7 +41,10 @@ min:10,
 max:9999
 
 },
-departs: Date,
+departs:{
+  type: Date, 
+  default: datePlus1
+},
 
 tickets:[ticketSchema]
 
