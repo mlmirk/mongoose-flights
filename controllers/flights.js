@@ -28,13 +28,46 @@ const flight= new Flight(req.body)
     res.redirect('/flights')
   })
 }
+function show(req,res){
+//console.log("SHOW VIEW connected ")
+  Flight.findById(req.params.id, function(error,flight){
+    res.render("flights/show",{
+      flight,
+      error,
+      title: `Flight Number ${flight.flightNo}`
+    })
 
+  })
+}
 
+function newTicket(req,res){
+  //console.log('generating a ticket form')
+  Flight.findById(req.params.id, function(error,flight){
+    res.render("flights/newTicket",{
+      flight,
+      error,
+      title: `Create ticket for flight ${flight.flightNo}`
+    })
 
+  })
+}
+
+function createTicket(req,res){
+  console.log(req.body)
+  Flight.findById(req.params.id,function(error, flight){
+    flight.tickets.push(req.body) 
+    flight.save(function(err){
+      res.redirect(`/flights/${flight._id}/tickets`)
+    })
+  })
+}
 
 
 export{
   index,
   newFlight as new,
-  create
+  create,
+  show,
+  newTicket,
+  createTicket
 }

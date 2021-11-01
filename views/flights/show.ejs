@@ -1,0 +1,17 @@
+<%- include("../partials/html-head") %>
+<%- include("../partials/nav") %>
+<main>
+
+  
+  <h1><%= title %></h1>
+  <h3>Carrier: <%= flight.airline %> </h3>
+  <h3>Leaving from: <%= flight.airport %></h3>
+  <h3>Date of flight:  <%= flight.departs %></h3>
+<a href="/flights/<%=flight._id%>/tickets/new ">Create Ticket</a>
+
+</main>
+
+
+
+
+<%- include("../partials/footer") %> 
