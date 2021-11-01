@@ -9,6 +9,34 @@
   <h3>Date of flight:  <%= flight.departs %></h3>
 <a href="/flights/<%=flight._id%>/tickets/new ">Create Ticket</a>
 
+<% if(flight.tickets.length) {%> 
+  <table>
+    <thead>
+      <tr>
+        <th>Seat</th>
+        <th>price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flight.tickets.forEach(function(t) { %>
+        <tr>
+
+          <td><%= t.seat %></td>
+          <td><%= t.price %></td>
+          <td><a href="">Delete ticket</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h3>Nop tickets creatd for this flight</h3>
+
+
+
+<% } %> 
+
+
+
 </main>
 
 
