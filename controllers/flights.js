@@ -2,7 +2,7 @@ import { Flight } from "../models/flight.js"
 import { Destination } from '../models/destination.js'
 
 const datePlus1 = new Date(new Date().setFullYear(new Date().getFullYear() + 1))
-console.log(datePlus1);
+//console.log(datePlus1);
 
 function index(req,res){
   //console.log("good copy")
@@ -68,12 +68,12 @@ function show(req,res){
         })
       })
     })
-    console.log('went through')
+    //console.log('went through')
   }
 
 
 function createTicket(req,res){
-  console.log(req.body)
+  //console.log(req.body)
   Flight.findById(req.params.id,function(error, flight){
     flight.tickets.push(req.body) 
     flight.save(function(err){
@@ -90,8 +90,17 @@ Flight.findById(req.params.id, function(error,flight){
     res.redirect(`/flights/${flight._id}`)
   })
 })
-console.log("connected")
+//console.log("connected")
 }
+
+function deleteFlight(req,res){
+  //console.log('deleting')
+  Flight.findByIdAndDelete(req.params.id, function(err, flight) {
+    res.redirect('/flights')
+})
+}
+
+
 export{
   index,
   newFlight as new,
@@ -99,5 +108,6 @@ export{
   show,
   //newTicket,
   createTicket,
-  addDestination
+  addDestination,
+  deleteFlight as delete
 }
