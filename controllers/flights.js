@@ -1,4 +1,5 @@
-import {  Flight } from "../models/flight.js"
+import { Flight } from "../models/flight.js"
+import { Destination } from '../models/destination.js'
 
 const datePlus1 = new Date(new Date().setFullYear(new Date().getFullYear() + 1))
 console.log(datePlus1);
@@ -34,29 +35,42 @@ const flight= new Flight(req.body)
     res.redirect('/flights')
   })
 }
-function show(req,res){
-//console.log("SHOW VIEW connected ")
-  Flight.findById(req.params.id, function(error,flight){
-    res.render("flights/show",{
-      flight,
-      error,
-      title: `Flight Number ${flight.flightNo}`
-    })
 
-  })
-}
 
-// function newTicket(req,res){
-//   //console.log('generating a ticket form')
+
+
+
+// function show(req,res){
+// //console.log("SHOW VIEW connected ")
 //   Flight.findById(req.params.id, function(error,flight){
-//     res.render("flights/newTicket",{
+//     res.render("flights/show",{
 //       flight,
 //       error,
-//       title: `Create ticket for flight ${flight.flightNo}`
+//       title: `Flight Number ${flight.flightNo}`
 //     })
 
 //   })
 // }
+
+
+function show(req,res){
+  //console.log("SHOW VIEW connected ")
+    Flight.findById(req.params.id)
+    .populate('destinations')
+    .exec(function(error,flight){
+      Destination.find({_id: {$nin:flight.destinations}}, function(err, destinations){
+        res.render('flights/show', {
+          title: `Flight Number ${flight.flightNo}`,
+          flight:flight,
+          error,
+          destinations:destinations,
+          
+        })
+      })
+    })
+    console.log('went through')
+  }
+
 
 function createTicket(req,res){
   console.log(req.body)
@@ -69,11 +83,21 @@ function createTicket(req,res){
 }
 
 
+function addDestination(req,res){
+Flight.findById(req.params.id, function(error,flight){
+  flight.destinations.push(req.body.addedDestination)
+  flight.save(function(error){
+    res.redirect(`/flights/${flight._id}`)
+  })
+})
+console.log("connected")
+}
 export{
   index,
   newFlight as new,
   create,
   show,
   //newTicket,
-  createTicket
+  createTicket,
+  addDestination
 }

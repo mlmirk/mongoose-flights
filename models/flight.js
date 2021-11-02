@@ -46,8 +46,10 @@ departs:{
   default: datePlus1
 },
 
-tickets:[ticketSchema]
-
+tickets:[ticketSchema],
+destinations: [{
+  type: Schema.Types.ObjectId, ref: 'Destination'
+}]
 
 }
 

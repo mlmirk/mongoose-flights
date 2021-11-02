@@ -4,10 +4,28 @@
 
   
   <h1><%= title %></h1>
+  <section>
   <h3>Carrier: <%= flight.airline %> </h3>
   <h3>Leaving from: <%= flight.airport %></h3>
   <h3>Date of flight:  <%= flight.departs %></h3>
 <!--<a href="/flights/<%=flight._id%>/tickets/new ">Create Ticket</a>-->
+<h3>Destinations:</h3>
+<ul>
+  <%- flight.destinations.map(d => `<li>${d.airport}</li>`).join('') %>
+</ul>
+</section>
+
+<form id="add-destination" action="/flights/<%=flight._id%>/destinations" method="POST">
+  <select name="addedDestination" id="addedDestination"> 
+    <%- destinations.map(d => `<option value="${d._id}">${d.airport}</option>`).join('') %>
+    
+  </select>
+  <button type="submit">Add Destination</button>
+
+
+</form>
+
+
 
 <form action="/flights/<%=flight._id%>/tickets"  method="POST">
   <label for="Seat selection">Select a seat: [A-F] and [1-99] only
